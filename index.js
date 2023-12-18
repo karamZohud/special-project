@@ -125,3 +125,100 @@ landingpage.style.backgroundImage='url("img/'+imagearr[RandomNum]+'")'
 
 
 randomizeImage();
+
+
+// skills start 
+// select skills selector
+let ourSkills=document.querySelector(".Skills");
+window.onscroll=function(){
+//skills ofset top
+let skillsOffsetTop=ourSkills.offsetTop;
+
+//this.console.log(skillsOffsetTop);
+//skills outer height
+let skillsOuterHeight=ourSkills.offsetHeight;
+//console.log(skillsOuterHeight);
+//
+let windowHight=this.innerHeight;
+//console.log(windowHight);
+
+//window scroll height
+let windowScrollTop=this.pageYOffset;
+//console.log(windowScrollTop);
+if(windowScrollTop>(skillsOffsetTop+skillsOuterHeight-windowHight)){
+}
+let allSkills=document.querySelectorAll(".skill-box .skill-progres span" );
+allSkills.forEach((skill)=>{
+skill.style.width=skill.dataset.progres;
+})
+}
+
+//end skills
+
+//create Popup with the Image
+let ourGallery=document.querySelectorAll(".gallery img");
+
+ourGallery.forEach((ele)=>{
+
+
+ele.addEventListener('click',(e)=>{
+    //create over lay ele
+    let overlay=document.createElement("div");
+    //add class to over lay
+    overlay.className='popup-overLay';
+    document.body.appendChild(overlay);
+    let popupBox=document.createElement("div");
+popupBox.className='popup-box';
+    
+    if(ele.alt!=null){
+//create hidding
+let imageHeading=document.createElement("h3");
+// create text for heading
+let imgText=document.createTextNode(ele.alt);
+//append the text on the heading 
+imageHeading.appendChild(imgText);
+//append the heading on the popup box 
+popupBox.appendChild(imageHeading);
+
+
+}
+
+
+
+//create the image
+let popupImage=document.createElement("img");
+//set image source 
+popupImage.src=ele.src;
+//add image to popup box 
+popupBox.appendChild(popupImage);
+//append hte popup box to body
+document.body.appendChild(popupBox);
+
+//add alt text in popupbox 
+let closeButton=document.createElement("span");
+let closeButtonText=document.createTextNode("X");
+
+closeButton.className='closeButton';
+closeButton.appendChild(closeButtonText);
+popupBox.appendChild(closeButton);
+
+
+
+});
+
+});
+
+document.addEventListener("click",(e)=>{
+    //remove the popup
+if(e.target.className=='closeButton'){
+e.target.parentNode.remove();
+//REMOVE OVERlay
+
+document.querySelector(".popup-overLay").remove();
+
+
+}
+});
+
+//end popup 
+
