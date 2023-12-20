@@ -64,11 +64,7 @@ document.documentElement.style.setProperty('--main--color',e.target.dataset.colo
 //set color in local storge
 localStorage.setItem("color_option",e.target.dataset.color);
 //remove active class from all children
-e.target.parentElement.querySelectorAll(".active").forEach((ele)=>{
-    ele.classList.remove("active");
-})
-
-e.target.classList.add("active");
+HandleActive(e);
 
 })
 })
@@ -77,12 +73,12 @@ const randomBackground=document.querySelectorAll(".random-background span");
 randomBackground.forEach((span)=>{
 span.addEventListener("click",(e)=>{
     
+    HandleActive(e);
+// e.target.parentElement.querySelectorAll(".active").forEach((ele)=>{
+//     ele.classList.remove("active");
+// })
 
-e.target.parentElement.querySelectorAll(".active").forEach((ele)=>{
-    ele.classList.remove("active");
-})
-
-e.target.classList.add("active");
+// e.target.classList.add("active");
 if(e.target.dataset.background== "yes"){
 
 backgroundOption=true;
@@ -118,7 +114,7 @@ if(backgroundOption === false){
 let RandomNum =Math.floor(Math.random()*imagearr.length);
 landingpage.style.backgroundImage='url("img/'+imagearr[RandomNum]+'")'
 
-},5000);
+},1000);
     }
 }
 
@@ -221,4 +217,97 @@ document.querySelector(".popup-overLay").remove();
 });
 
 //end popup 
+const allBullets=document.querySelectorAll(".navBullets .bullet");
+const allLinks=document.querySelectorAll(".links a");
+// start nav bullet
+// 
+// allBullets.forEach((bullet)=>{
+//     bullet.addEventListener("click",(e)=>{
+//         let section=e.target.dataset.section;
+//         document.querySelector(section).scrollIntoView ({
+//             behavior:'smooth'
+//         });
+//     })
+// })
 
+// // end nav bullet
+// //start navbar
+// 
+// allLinks.forEach((links)=>{
+//     links.addEventListener("click",(e)=>{
+//         e.preventDefault();
+//         let section=e.target.dataset.features;
+//         document.querySelector(section).scrollIntoView ({
+//             behavior:'smooth'
+//         });
+//     })
+// })
+//end navbar
+
+//we can combine the two code above in 
+function scrollToSomeWhere(element){
+element.forEach((ele)=>{
+    ele.addEventListener("click",(e)=>{
+        e.preventDefault();
+        let section=e.target.dataset.section;
+        document.querySelector(section).scrollIntoView ({
+            behavior:'smooth'
+        });
+    })
+})
+}
+scrollToSomeWhere(allLinks);
+scrollToSomeWhere(allBullets);
+
+function HandleActive(event){
+    event.target.parentElement.querySelectorAll(".active").forEach((ele)=>{
+        ele.classList.remove("active");
+    })
+    
+    event.target.classList.add("active");
+}
+
+let bulletOption=document.querySelectorAll(" .Testing-Option span");
+let bulletsContainer= document.querySelector(".navBullets");
+let bulletStorge=localStorage.getItem("bullets-option");
+
+
+if(bulletStorge!=null){
+document.querySelectorAll(" .Testing-Option span").forEach((span)=>{
+span.classList.remove("active");
+})
+if (bulletStorge=='show') {
+    bulletsContainer.style.display='block'
+    document.querySelector(".Testing-Option .show").classList.add('active');
+}
+else{
+    bulletsContainer.style.display='none';  
+    document.querySelector(".Testing-Option .hide").classList.add('active');
+}
+
+}
+bulletOption.forEach((span)=>{
+    span.addEventListener("click",(e)=>{
+if(span.dataset.display=='show'){
+    bulletsContainer.style.display='block'
+    localStorage.setItem("bullets-option",'show');
+}
+else{
+    bulletsContainer.style.display='none';  
+    localStorage.setItem("bullets-option",'hide');
+ 
+}
+HandleActive(e);
+    })
+ })
+
+
+ //reset button 
+ document.querySelector(".reset-option").onclick=function() {
+    //localStorage.clear();//remove every thing in local storge
+localStorage.removeItem("bullets-option");//remove only the the storge with the name 
+localStorage.removeItem("background-option");
+localStorage.removeItem("color_option");
+window.location.reload();//reload window
+    
+ }

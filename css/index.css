@@ -86,7 +86,7 @@ color: var(--main--color);
     padding: 0;
     margin: 0;
 }
-
+/* start setting box */
 .setting-box{
     position: fixed;
     z-index: 10;
@@ -97,9 +97,11 @@ color: var(--main--color);
     top: 0;
     transition: 0.4 ;
     cursor: pointer;
+    border: #c9c0c0 2px solid;
 }
 .setting-box.open{
     left: 0;
+    
 }
 .setting-box .toggleSettings {
     position: absolute;
@@ -150,10 +152,10 @@ margin-left: 2px;
 opacity: 0.5;
 
 }
-.setting-box .setting-container .option-box .yes ,
-.setting-box .setting-container .option-box .no
+/* .setting-box .option-box .yes ,
+.setting-box .option-box .no
 {
-background-color: cadetblue;
+background-color: var(--main--color);
 width: 60px;color: white;
 margin-top: 14px ;
 display: inline-block;
@@ -164,7 +166,33 @@ margin-bottom: 8px;
 border-radius: 4px;
 opacity: .5;cursor: pointer;
 }
-.setting-box .random-background span.active{
+.setting-box .option-box .show ,
+.setting-box .option-box .hide
+{
+background-color: var(--main--color);
+width: 60px;color: white;
+margin-top: 14px ;
+display: inline-block;
+text-align: center;
+font-size: 14px;
+padding: 2px 3px;
+margin-bottom: 8px;
+border-radius: 4px;
+opacity: .5;cursor: pointer;
+} */
+.setting-box .option-box span{
+background-color: var(--main--color);
+width: 60px;color: white;
+margin-top: 14px ;
+display: inline-block;
+text-align: center;
+font-size: 14px;
+padding: 2px 3px;
+margin-bottom: 8px;
+border-radius: 4px;
+opacity: .5;cursor: pointer;
+}
+.setting-box .option-box span.active{
     opacity: 1 !important;
 }
 
@@ -187,7 +215,56 @@ background-color: #8a2be2;
 .setting-box .setting-container .color-list li:nth-child(5){
  background-color: #ff00ff
                 }
+/* end setting box */
+/* start nav bullets */
+.navBullets{
+position: fixed;
+right: 0;
+top: 50%;
+transform: translateY(-50%);
+width: 40px;
+z-index: 11;
+}
 
+.navBullets .bullet{
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--main--color);
+     margin: 10px 5px;
+    border-radius: 50%;
+    cursor: pointer; 
+    position: relative;
+  
+}
+.navBullets .bullet:hover .tooltip{
+  display: block;
+
+}
+.navBullets .bullet .tooltip{
+    background-color: var(--main--color);
+    width: 100px;
+color: #fff;
+padding: 4px 8px;
+position: absolute;
+right: 30px;
+top: -7px;
+cursor: default;
+pointer-events: none;
+display: none;
+}
+.navBullets .bullet .tooltip::before{
+    content: '';
+    border-style: solid ;
+    border-width: 10px;
+    border-color: transparent transparent transparent var(--main--color);
+    height:0 ;
+    width: 0;
+    position: absolute;
+    right: -20px;top: 50%;
+    transform: translateY(-50%);
+    
+}
+/* end nav bullets */
 
 /* about us css */
 .container{
@@ -383,14 +460,36 @@ top: 0;
 
 .timeLine .timeLine-content .left,
 .timeLine .timeLine-content .right{
-    width: calc(50% - 20px);
+    width: calc(50% - 25px);
     margin-bottom: 40px;
     position: relative;
-    overflow: hidden;
-
+   
 }
+
+.timeLine .timeLine-content .left p,
+.timeLine .timeLine-content .right p{
+    overflow: hidden;
+}
+
 .timeLine .timeLine-content .left{
     float: left;
+}
+.timeLine .timeLine-content .left::before{
+  right: -34px;
+}
+.timeLine .timeLine-content .left::before,
+.timeLine .timeLine-content .right::before{
+    content: '';
+    width: 14px;height: 14px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 3px solid var(--main--color);
+    position: absolute;
+   
+    top: 20px;
+}
+.timeLine .timeLine-content .right::before{
+ left: -35px;
 }
 .timeLine .timeLine-content .right{
     float: right;
@@ -411,5 +510,172 @@ top: 0;
   margin: 0 ;
   color: #666;
   line-height: 1.6;
+
+}
+.clearfix {
+clear: both;
+}
+
+.timeLine .timeLine-content .left .content::before{
+content: '';
+border-style: solid ;
+border-width: 10px;
+border-color: transparent transparent transparent #fff;
+height:0 ;
+width: 0;
+position: absolute;
+right: -20px;top: 20px;
+
+}
+.timeLine .timeLine-content .right .content::before{
+    content: '';
+    border-style: solid ;
+    border-width: 10px;
+    border-color:  transparent #fff transparent transparent;
+    height:0 ;
+    width: 0;
+    position: absolute;
+    top: 20px;
+    left: -20px;
     
+    }
+
+/* end timeLine  */
+/* start our feature */
+.feature{
+    margin-top: 80px;margin-bottom: 80px;
+
+}
+.feature h2{
+    font-weight: bold;
+    color: var(--main--color);
+    margin:0 0 40px;
+    text-align: center;
+font-size: 30px;
+}
+.ourFeature{
+width: calc(100%/3 );
+float: left;text-align: center;
+margin-bottom: 40px;
+font-size: 12px;
+}
+.feature img{
+    width: 150px; 
+    height: 200px;
+    border-radius: 50%;
+
+}
+.ourFeature h4{
+font-size: 22px;
+margin: 15px 0 40px;
+position: relative;
+
+}
+.feature .ourFeature h4::before {
+    width: 40px;height: 4px;
+    content: '';
+    background-color: var(--main--color);
+    position: absolute;
+    left: 50%;
+    margin-left: -20px;
+    bottom: -22px;
+}
+.feature .ourFeature p{
+    width: 80%;
+    margin: 0 auto;
+    line-height: 1.7;
+    color: #666;
+}
+
+/* end ourfeature */
+
+
+/* start testimonials */
+.testimonials{
+min-height: 600px;
+position: relative;
+padding-top: 60px;padding-bottom: 60px;
+}
+.testimonials::before{
+    content: '';
+    width: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--main--color);
+    height: 100%;
+    
+    }
+    .testimonials::after{
+        
+        content: '';
+        
+        width: 50%;
+        position: absolute;
+        right:0;
+        top: 0;
+        background-color: #333;
+        height: 100%;
+        }
+.testimonials h3{
+    font-weight: bold;
+    color: white;
+    margin:0 0 25px;
+font-size: 30px;
+position: relative;
+z-index: 2;
+}
+.testimonials .ts-box{
+position: relative;
+z-index: 2;
+float: left; 
+width: calc(98%/3);
+background-color: #fff;
+border-radius: 5px;
+padding: 10px;
+}
+/* end testimonials */
+
+/* last type of tsbox do not do css on it */
+.testimonials .ts-box:not(:last-of-type){
+margin-right: 1%;
+
+}
+/* direct paragraph >p*/
+.testimonials .ts-box >p{
+margin: 0 0 20px;
+line-height: 1.5;
+font-size: 15px;
+color: #333;
+}
+
+.testimonials .ts-box .person-info{
+overflow: hidden;
+
+}
+.testimonials .ts-box .person-info p{
+color: #333;
+margin:0;
+}
+.testimonials .ts-box .person-info h4{
+    margin: 17px 0 4px;
+}
+.testimonials .ts-box .person-info img{
+float: left;
+margin-right: 10px;
+border-radius: 50%;
+
+}
+
+.reset-option{
+background-color: #dc143c;
+width: 134px;height: 30px;
+margin: 10px auto;
+border: none;
+display: block;
+
+color: #fff;
+font-weight: bold;
+border-radius: 4px;
+cursor: pointer;
 }
