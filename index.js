@@ -311,3 +311,35 @@ localStorage.removeItem("color_option");
 window.location.reload();//reload window
     
  }
+
+// toggle menu
+ 
+let toggleButton=document.querySelector(".toggel-menu");
+let tLinke=document.querySelector(".links");
+toggleButton.onclick=function(e){
+e.stopPropagation();
+
+    this.classList.toggle("menuActive")
+    tLinke.classList.toggle("open");
+}
+document.addEventListener("click",(e)=>{
+   if(e.target!== toggleButton && e.target !== tLinke){
+       if (tLinke.classList.contains("open")) {
+        toggleButton.classList.toggle("menuActive")
+        tLinke.classList.toggle("open");
+       }
+
+   }
+})
+//stop propagation on meue
+tLinke.onclick=function (e) {
+    e.stopPropagation();
+}
+
+
+// screen.onclick=function(){
+//     toggleButton.classList.toggle("menuActive")
+//     tLinke.classList.toggle("open");
+// }
+// end toggle menu
+
